@@ -1,14 +1,24 @@
-def show_phone(args):
-    [name] = args
-    with open('name_phone.txt', "r", encoding = "utf-8") as fh:
-        lines = fh.readlines()
-    lists = {}
-    for line in lines:
-        list_line = line.split(",")
-        lists.update({list_line[0]: list_line[1].strip()})
-    if name in lists:
-        return(f"{name},{lists[name]}")
+def handle_command(command):
+    if command == 'hello':
+        return 'How can I help you?'
+    elif command == 'add username phone':
+        return 'Contact added'
+    elif command == 'change username phone':
+        return 'username'
+    elif command == 'Goodbye!':
+        return 'Goodbye! If you need help, dont hesitate to reach out'
     else:
-        return("Contact does not exist. Will you write it down?")         
-        print("There is no such name") 
-        
+        return 'Goodbye! If you need help, dont hesitate to reach out'
+
+# Головний цикл програми
+while True:
+    # Очікуємо введення команди від користувача
+    command = input('Введіть команду: ')
+
+    # Обробляємо команду та виводимо результат
+    response = handle_command(command.lower())
+    print(response)
+
+    # Вихід з циклу, якщо користувач ввів "close"
+    if command.lower() == 'close':
+        break
